@@ -10,8 +10,15 @@ def button_pressed(value):
 
 #equal button will evaluate code as a string and return the result to text field
 def equals_pressed():
-    result = eval(expression_field_value.get())
-    expression_field_value.set(result)
+    try:
+        result = eval(expression_field_value.get())
+        expression_field_value.set(result)
+    except ZeroDivisionError:
+        expression_field_value.set("Division by zero error")
+
+#Sets text field to empty string; clearing field.
+def clear_pressed():
+    expression_field_value.set("")
 
 
 #creating the class for the calculator
@@ -76,7 +83,7 @@ if __name__ == "__main__":
     button0 = Button(window, text="0", height = 3, width = 3, borderwidth = 1, command = when_pressed)
     button0.grid(row = 4, column = 0, sticky = "ew")
 
-    clear_button = Button(window, text="C", height = 3, width = 3, borderwidth = 1)
+    clear_button = Button(window, text="C", height = 3, width = 3, borderwidth = 1, command = clear_pressed)
     clear_button.grid(row = 4, column = 1, sticky = "ew")
 
     equals_button = Button(window, text="=", height = 3, width = 3, borderwidth = 1, command = equals_pressed)
