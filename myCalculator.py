@@ -31,57 +31,20 @@ if __name__ == "__main__":
     expression_field = Entry(window, width = 30, textvariable = expression_field_value)
     expression_field.grid(row = 0, column = 0, columnspan = 4)
     
-    when_pressed = partial(button_pressed, "1")
-    button1 = Button(window, text="1", height = 3, width = 3, borderwidth = 1, command = when_pressed)
-    button1.grid(row = 1, column = 0, sticky = "ew")
+    button_rows = [
+        ["1", "2", "3", "*"],
+        ["4", "5", "6", "/"],
+        ["7", "8", "9", "+"],
+        ["0", "-"],
+    ]
 
-    when_pressed = partial(button_pressed, "2")
-    button2 = Button(window, text="2", height = 3, width = 3, borderwidth = 1, command = when_pressed)
-    button2.grid(row = 1, column = 1, sticky = "ew")
+    #takes nested list and takes the 'buttons' as each row and 'row' as each index of the row
+    for row, buttons in enumerate(button_rows): # buttons = ["1", "2", "3", "*"]
+        for col, button_value in enumerate(buttons):
+            when_pressed = partial(button_pressed, button_value)
+            button1 = Button(window, text=button_value, height = 3, width = 3, borderwidth = 1, command = when_pressed)
+            button1.grid(row = row + 1, column = col if button_value != "-" else 3, sticky = "ew")
 
-    when_pressed = partial(button_pressed, "3")
-    button3 = Button(window, text="3", height = 3, width = 3, borderwidth = 1, command = when_pressed)
-    button3.grid(row = 1, column = 2, sticky = "ew")
-
-    when_pressed = partial(button_pressed, "*")
-    multiplication_button = Button(window, text="*", height = 3, width = 3, borderwidth = 1, command = when_pressed)
-    multiplication_button.grid(row = 1, column = 3, sticky = "ew")
-
-    when_pressed = partial(button_pressed, "4")
-    button4 = Button(window, text="4", height = 3, width = 3, borderwidth = 1, command = when_pressed)
-    button4.grid(row = 2, column = 0, sticky = "ew")
-
-    when_pressed = partial(button_pressed, "5")
-    button5 = Button(window, text="5", height = 3, width = 3, borderwidth = 1, command = when_pressed)
-    button5.grid(row = 2, column = 1, sticky = "ew")
-
-    when_pressed = partial(button_pressed, "6")
-    button6 = Button(window, text="6", height = 3, width = 3, borderwidth = 1, command = when_pressed)
-    button6.grid(row = 2, column = 2, sticky = "ew")
-
-    when_pressed = partial(button_pressed, "/")
-    division_button = Button(window, text="/", height = 3, width = 3, borderwidth = 1, command = when_pressed)
-    division_button.grid(row = 2, column = 3, sticky = "ew")
-
-    when_pressed = partial(button_pressed, "7")
-    button7 = Button(window, text="7", height = 3, width = 3, borderwidth = 1, command = when_pressed)
-    button7.grid(row = 3, column = 0, sticky = "ew")
-
-    when_pressed = partial(button_pressed, "8")
-    button8 = Button(window, text="8", height = 3, width = 3, borderwidth = 1, command = when_pressed)
-    button8.grid(row = 3, column = 1, sticky = "ew")
-
-    when_pressed = partial(button_pressed, "9")
-    button9 = Button(window, text="9", height = 3, width = 3, borderwidth = 1, command = when_pressed)
-    button9.grid(row = 3, column = 2, sticky = "ew")
-
-    when_pressed = partial(button_pressed, "+")
-    addition_button = Button(window, text="+", height = 3, width = 3, borderwidth = 1, command = when_pressed)
-    addition_button.grid(row = 3, column = 3, sticky = "ew")
-
-    when_pressed = partial(button_pressed, "0")
-    button0 = Button(window, text="0", height = 3, width = 3, borderwidth = 1, command = when_pressed)
-    button0.grid(row = 4, column = 0, sticky = "ew")
 
     clear_button = Button(window, text="C", height = 3, width = 3, borderwidth = 1, command = clear_pressed)
     clear_button.grid(row = 4, column = 1, sticky = "ew")
@@ -89,8 +52,66 @@ if __name__ == "__main__":
     equals_button = Button(window, text="=", height = 3, width = 3, borderwidth = 1, command = equals_pressed)
     equals_button.grid(row = 4, column = 2, sticky = "ew")
 
-    when_pressed = partial(button_pressed, "-")
-    subtraction_button = Button(window, text="-", height = 3, width = 3, borderwidth = 1, command = when_pressed)
-    subtraction_button.grid(row = 4, column = 3, sticky = "ew")
+    # when_pressed = partial(button_pressed, "1")
+    # button1 = Button(window, text="1", height = 3, width = 3, borderwidth = 1, command = when_pressed)
+    # button1.grid(row = 1, column = 0, sticky = "ew")
+
+    # when_pressed = partial(button_pressed, "2")
+    # button2 = Button(window, text="2", height = 3, width = 3, borderwidth = 1, command = when_pressed)
+    # button2.grid(row = 1, column = 1, sticky = "ew")
+
+    # when_pressed = partial(button_pressed, "3")
+    # button3 = Button(window, text="3", height = 3, width = 3, borderwidth = 1, command = when_pressed)
+    # button3.grid(row = 1, column = 2, sticky = "ew")
+
+    # when_pressed = partial(button_pressed, "*")
+    # multiplication_button = Button(window, text="*", height = 3, width = 3, borderwidth = 1, command = when_pressed)
+    # multiplication_button.grid(row = 1, column = 3, sticky = "ew")
+
+    # when_pressed = partial(button_pressed, "4")
+    # button4 = Button(window, text="4", height = 3, width = 3, borderwidth = 1, command = when_pressed)
+    # button4.grid(row = 2, column = 0, sticky = "ew")
+
+    # when_pressed = partial(button_pressed, "5")
+    # button5 = Button(window, text="5", height = 3, width = 3, borderwidth = 1, command = when_pressed)
+    # button5.grid(row = 2, column = 1, sticky = "ew")
+
+    # when_pressed = partial(button_pressed, "6")
+    # button6 = Button(window, text="6", height = 3, width = 3, borderwidth = 1, command = when_pressed)
+    # button6.grid(row = 2, column = 2, sticky = "ew")
+
+    # when_pressed = partial(button_pressed, "/")
+    # division_button = Button(window, text="/", height = 3, width = 3, borderwidth = 1, command = when_pressed)
+    # division_button.grid(row = 2, column = 3, sticky = "ew")
+
+    # when_pressed = partial(button_pressed, "7")
+    # button7 = Button(window, text="7", height = 3, width = 3, borderwidth = 1, command = when_pressed)
+    # button7.grid(row = 3, column = 0, sticky = "ew")
+
+    # when_pressed = partial(button_pressed, "8")
+    # button8 = Button(window, text="8", height = 3, width = 3, borderwidth = 1, command = when_pressed)
+    # button8.grid(row = 3, column = 1, sticky = "ew")
+
+    # when_pressed = partial(button_pressed, "9")
+    # button9 = Button(window, text="9", height = 3, width = 3, borderwidth = 1, command = when_pressed)
+    # button9.grid(row = 3, column = 2, sticky = "ew")
+
+    # when_pressed = partial(button_pressed, "+")
+    # addition_button = Button(window, text="+", height = 3, width = 3, borderwidth = 1, command = when_pressed)
+    # addition_button.grid(row = 3, column = 3, sticky = "ew")
+
+    # when_pressed = partial(button_pressed, "0")
+    # button0 = Button(window, text="0", height = 3, width = 3, borderwidth = 1, command = when_pressed)
+    # button0.grid(row = 4, column = 0, sticky = "ew")
+
+    # clear_button = Button(window, text="C", height = 3, width = 3, borderwidth = 1, command = clear_pressed)
+    # clear_button.grid(row = 4, column = 1, sticky = "ew")
+
+    # equals_button = Button(window, text="=", height = 3, width = 3, borderwidth = 1, command = equals_pressed)
+    # equals_button.grid(row = 4, column = 2, sticky = "ew")
+
+    # when_pressed = partial(button_pressed, "-")
+    # subtraction_button = Button(window, text="-", height = 3, width = 3, borderwidth = 1, command = when_pressed)
+    # subtraction_button.grid(row = 4, column = 3, sticky = "ew")
 
     window.mainloop()
